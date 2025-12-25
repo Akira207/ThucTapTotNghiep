@@ -7,6 +7,8 @@ const Home = () => {
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
 
+
+
   useEffect(() => {
     setTasks(getTasks());
   }, []);
@@ -39,6 +41,7 @@ const Home = () => {
     saveTasks(newTasks);
   };
 
+
   return (
     <div>
       <h1>Task Management</h1>
@@ -55,6 +58,8 @@ const Home = () => {
         onEdit={setEditingTask}
         onUpdateStatus={updateStatus}
       />
+
+
     </div>
   );
 };

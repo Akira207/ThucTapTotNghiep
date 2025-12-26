@@ -8,7 +8,6 @@ const Home = () => {
   const [editingTask, setEditingTask] = useState(null);
 
 
-
   useEffect(() => {
     setTasks(getTasks());
   }, []);

@@ -1,8 +1,13 @@
 import { useState } from "react";
+import classNames from 'classnames/bind';
+import styles from "./TaskForm.module.scss";
+
+const cx = classNames.bind(styles);
 
 function TaskForm({ onAddTask }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [deadline, setDeadline] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,17 +17,19 @@ function TaskForm({ onAddTask }) {
       id: Date.now(),
       title,
       description,
+      deadline,
       status: "Todo",
       createdAt: new Date().toISOString(),
     });
 
     setTitle("");
     setDescription("");
+    setDeadline("");
   };
 
   return (
-    <form>
-      <h3>Nhập công việc</h3>
+    <form className={cx('wrapper')} >
+      <h2 className={cx('title')}>Nhập công việc</h2>
 
       <input
         placeholder="Tên công việc"
@@ -36,7 +43,13 @@ function TaskForm({ onAddTask }) {
         onChange={(e) => setDescription(e.target.value)}
       />
 
-      <button onClick={handleSubmit}>Thêm</button>
+      <input
+        type="date"
+        value={deadline}
+        onChange={(e) => setDeadline(e.target.value)}
+      />
+
+      <button onClick={handleSubmit}>Thêm công việc</button>
     </form>
   );
 }

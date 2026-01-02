@@ -1,18 +1,25 @@
-function TaskItem({ task, onEdit, onDelete, onUpdateStatus }) {
+function TaskItem({ task, onSelectTask, onDelete }) {
   return (
-    <li>
+    <div
+      style={{
+        border: "1px solid #ccc",
+        padding: 8,
+        marginBottom: 8
+      }}
+    >
       <strong>{task.title}</strong>
-      <select
-        value={task.status}
-        onChange={(e) => onUpdateStatus?.(task.id, e.target.value)}
-      >
-        <option value="Todo">Todo</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Done">Done</option>
-      </select>
-      <button onClick={() => onEdit(task)}>Chi tiết</button>
-      <button onClick={() => onDelete?.(task.id)}>Xóa</button>
-    </li>
+      <div>{task.status}</div>
+
+      <div style={{ marginTop: 6 }}>
+        <button onClick={() => onSelectTask(task)}>
+          Chi tiết
+        </button>
+
+        <button onClick={() => onDelete(task.id)}>
+          Xóa
+        </button>
+      </div>
+    </div>
   );
 }
 

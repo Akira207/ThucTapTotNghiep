@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 function TaskDetail({ task, onUpdate, onDelete, onClose }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [deadline, setDeadline] = useState("");
   const [status, setStatus] = useState("Todo");
 
   useEffect(() => {
     if (task) {
       setTitle(task.title);
       setDescription(task.description || "");
+      setDeadline(task.deadline || "");
       setStatus(task.status);
     }
   }, [task]);
@@ -20,6 +22,7 @@ function TaskDetail({ task, onUpdate, onDelete, onClose }) {
       ...task,
       title,
       description,
+      deadline,
       status,
     });
   };
@@ -28,6 +31,7 @@ function TaskDetail({ task, onUpdate, onDelete, onClose }) {
     <div>
       <h3>Chi tiết công việc</h3>
 
+      {/* Tên công việc */}
       <div>
         <label>Tên công việc</label>
         <input
@@ -36,6 +40,7 @@ function TaskDetail({ task, onUpdate, onDelete, onClose }) {
         />
       </div>
 
+      {/* Mô tả */}
       <div>
         <label>Mô tả</label>
         <textarea
@@ -44,6 +49,17 @@ function TaskDetail({ task, onUpdate, onDelete, onClose }) {
         />
       </div>
 
+      {/* Hạn hoàn thành */}
+      <div>
+        <label>Hạn hoàn thành</label>
+        <input
+          type="date"
+          value={deadline}
+          onChange={(e) => setDeadline(e.target.value)}
+        />
+      </div>
+
+      {/* Trạng thái */}
       <div>
         <label>Trạng thái</label>
         <select
@@ -56,6 +72,7 @@ function TaskDetail({ task, onUpdate, onDelete, onClose }) {
         </select>
       </div>
 
+      {/* Nút thao tác */}
       <div style={{ marginTop: 10 }}>
         <button onClick={handleUpdate}>Cập nhật</button>
         <button onClick={() => onDelete(task.id)}>Xóa</button>

@@ -1,11 +1,11 @@
 import SearchBox from "./SearchBox";
 import SearchResult from "./SearchResult";
 
-function TaskSearch() {
+function TaskSearch({ keyword, onSearch, results, onSelectTask }) {
   return (
     <div>
-      <SearchBox />
-      <SearchResult />
+      <SearchBox value={keyword} onChange={onSearch} />
+      <SearchResult results={results} onSelectTask={onSelectTask} />
     </div>
   );
 }

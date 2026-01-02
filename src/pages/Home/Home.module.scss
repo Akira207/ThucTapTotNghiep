@@ -1,0 +1,16 @@
+.wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.TaskForm {
+    flex: 1;
+}
+
+.TaskListDetail {
+    flex: 2;
+}
+
+.TaskSearchFilter {
+    flex: 1;
+}

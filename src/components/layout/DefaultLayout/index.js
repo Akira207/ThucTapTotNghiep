@@ -3,7 +3,7 @@ import Bottom from './Bottom';
 
 function DefaultLayout({children}) {
     return ( 
-        <div>
+        <div className='grid wide'>
             <Header />
              <div className="content">
                 {children}

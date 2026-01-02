@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import classNames from 'classnames/bind';
+import classNames from "classnames/bind";
 
 import styles from "./Home.module.scss";
 
@@ -19,13 +19,11 @@ function Home() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [statusFilter, setStatusFilter] = useState([]);
 
-
   useEffect(() => {
     setTasks(getTasks());
   }, []);
 
   const selectedTask = tasks.find((t) => t.id === selectedTaskId);
-
 
   const addTask = (task) => {
     const newTasks = [...tasks, task];
@@ -57,53 +55,54 @@ function Home() {
 
           const matchKeyword =
             task.title.toLowerCase().includes(keyword) ||
-            (task.description || "")
-              .toLowerCase()
-              .includes(keyword);
+            (task.description || "").toLowerCase().includes(keyword);
 
           const matchStatus =
-            statusFilter.length === 0 ||
-            statusFilter.includes(task.status);
+            statusFilter.length === 0 || statusFilter.includes(task.status);
 
           return matchKeyword && matchStatus;
         });
 
-
   return (
-     <div className="row" >
-    
-      <div className="col c-3" >
-        <TaskForm onAddTask={addTask} />
-      </div>
-     
-      <div className="col c-6" >
-        {!selectedTask && (
-          <TaskList
-            tasks={tasks}
+    <div className={cx("wrapper")}>
+      <div className="row">
+        <div className="col c-4">
+          <div className={cx("box")}>
+            <TaskForm onAddTask={addTask} />
+          </div>
+        </div>
+
+        <div className="col c-4">
+          <div className={cx("box")}>
+            {!selectedTask && (
+              <TaskList
+                tasks={tasks}
+                onSelectTask={(task) => setSelectedTaskId(task.id)}
+                onDelete={deleteTask}
+              />
+            )}
+
+            {selectedTask && (
+              <TaskDetail
+                task={selectedTask}
+                onUpdate={updateTask}
+                onDelete={deleteTask}
+                onClose={() => setSelectedTaskId(null)}
+              />
+            )}
+          </div>
+        </div>
+
+        <div className="col c-4">
+          <TaskSearch
+            keyword={searchKeyword}
+            onSearch={setSearchKeyword}
+            results={searchResults}
             onSelectTask={(task) => setSelectedTaskId(task.id)}
-            onDelete={deleteTask}
           />
-        )}
 
-        {selectedTask && (
-          <TaskDetail
-            task={selectedTask}
-            onUpdate={updateTask}
-            onDelete={deleteTask}
-            onClose={() => setSelectedTaskId(null)}
-          />
-        )}
-      </div>
-
-      <div className="col c-3" >
-        <TaskSearch
-          keyword={searchKeyword}
-          onSearch={setSearchKeyword}
-          results={searchResults}
-          onSelectTask={(task) => setSelectedTaskId(task.id)}
-        />
-
-        <TaskFilter onChange={setStatusFilter} />
+          <TaskFilter onChange={setStatusFilter} />
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import classNames from 'classnames/bind';
+import classNames from "classnames/bind";
 import styles from "./TaskForm.module.scss";
 
 const cx = classNames.bind(styles);
@@ -28,28 +28,40 @@ function TaskForm({ onAddTask }) {
   };
 
   return (
-    <form className={cx('wrapper')} >
-      <h2 className={cx('title')}>Nhập công việc</h2>
+    <form className={cx("wrapper")}>
+      <h2 className={cx("title")}>Nhập công việc</h2>
 
-      <input
-        placeholder="Tên công việc"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+      <div className={cx("input-box")}>
+        <input
+          className={cx("input")}
+          value={title}
+          placeholder=" "
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <label>Tên công việc</label>
+      </div>
 
-      <textarea
-        placeholder="Mô tả công việc"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+      <div className={cx("input-box")}>
+        <textarea
+          className={cx("input")}
+          value={description}
+          placeholder=" "
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <label>Mô tả công việc</label>
+      </div>
 
-      <input
-        type="date"
-        value={deadline}
-        onChange={(e) => setDeadline(e.target.value)}
-      />
+      <div className={cx("input-box")}>
+        {/* <label className={cx("static-label")}>Deadline</label> */}
+        <input
+          type="date"
+          className={cx("input")}
+          value={deadline}
+          onChange={(e) => setDeadline(e.target.value)}
+        />
+      </div>
 
-      <button onClick={handleSubmit}>Thêm công việc</button>
+      <button className={cx('btn')}  onClick={handleSubmit}>Thêm công việc</button>
     </form>
   );
 }

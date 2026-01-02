@@ -1,4 +1,11 @@
 import { useEffect, useState } from "react";
+import styles from "./TaskDetail.module.scss";
+import classNames from "classnames/bind";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
+const cx = classNames.bind(styles);
 
 function TaskDetail({ task, onUpdate, onDelete, onClose }) {
   const [title, setTitle] = useState("");
@@ -28,31 +35,34 @@ function TaskDetail({ task, onUpdate, onDelete, onClose }) {
   };
 
   return (
-    <div>
-      <h3>Chi tiết công việc</h3>
+    <div className={cx("wrapper")}>
+      <h2 className={cx("title")}>Chi tiết công việc</h2>
 
       {/* Tên công việc */}
-      <div>
-        <label>Tên công việc</label>
+      <div className={cx("input-box")}>
+        <label className={cx("input-title")}>Tên công việc</label>
         <input
+          className={cx("input-field")}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
 
       {/* Mô tả */}
-      <div>
-        <label>Mô tả</label>
+      <div className={cx("input-box")}>
+        <label className={cx("input-title")}>Mô tả</label>
         <textarea
+          className={cx("input-field")}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
 
       {/* Hạn hoàn thành */}
-      <div>
-        <label>Hạn hoàn thành</label>
+      <div className={cx("input-box-row")}>
+        <label className={cx("input-title")}>Hạn hoàn thành: </label>
         <input
+          className={cx("input-field")}
           type="date"
           value={deadline}
           onChange={(e) => setDeadline(e.target.value)}
@@ -60,24 +70,33 @@ function TaskDetail({ task, onUpdate, onDelete, onClose }) {
       </div>
 
       {/* Trạng thái */}
-      <div>
-        <label>Trạng thái</label>
+      <div className={cx("input-box-row")}>
+        <label className={cx("input-title")}>Trạng thái</label>
         <select
+          className={cx("input-field")}
           value={status}
           onChange={(e) => setStatus(e.target.value)}
         >
-          <option value="Todo">Todo</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Done">Done</option>
+          <option value="Todo">Đang làm</option>
+          <option value="In Progress">Quá hạn</option>
+          <option value="Done">Hoàn Thành</option>
         </select>
       </div>
 
       {/* Nút thao tác */}
-      <div style={{ marginTop: 10 }}>
-        <button onClick={handleUpdate}>Cập nhật</button>
-        <button onClick={() => onDelete(task.id)}>Xóa</button>
-        <button onClick={onClose}>Đóng</button>
+      <div className={cx("action-buttons")}>
+        <button className={cx("btn")} onClick={handleUpdate}>
+          Cập nhật
+        </button>
+        <button className={cx("btn")} onClick={() => onDelete(task.id)}>
+          Xóa
+        </button>
       </div>
+      <button className={cx("btn-close")} onClick={onClose}>
+        <div className={cx("icon")}>
+          <FontAwesomeIcon icon={faXmark} />
+        </div>
+      </button>
     </div>
   );
 }

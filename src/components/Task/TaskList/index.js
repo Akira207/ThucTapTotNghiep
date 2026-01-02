@@ -1,13 +1,19 @@
 import TaskItem from "./TaskItem";
 
+import styles from "./TaskList.module.scss";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(styles);
+
 function TaskList({ tasks, onSelectTask, onDelete }) {
   return (
-    <div>
-      <h3>Danh sách công việc</h3>
+    <div className={cx('wrapper')}>
+      <h3 className={cx('title')}>Danh sách công việc</h3>
 
       {tasks.length === 0 && <p>Chưa có công việc</p>}
 
-      {tasks.map((task) => (
+      <ul className={cx('task-list')} >
+        {tasks.map((task) => (
         <TaskItem
           key={task.id}
           task={task}
@@ -15,6 +21,7 @@ function TaskList({ tasks, onSelectTask, onDelete }) {
           onDelete={onDelete}
         />
       ))}
+      </ul>
     </div>
   );
 }

@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 
+import styles from "./TaskSearch.module.scss";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(styles);
+
 function SearchBox({ value, onChange }) {
   const [text, setText] = useState(value);
 
@@ -12,13 +17,17 @@ function SearchBox({ value, onChange }) {
   }, [text, onChange]);
 
   return (
-    <div>
-      <h4>Tìm kiếm</h4>
-      <input
-        placeholder="Nhập từ khóa..."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
+    <div className="search-box">
+      <h2 className={cx("title")}>Tìm kiếm</h2>
+      <div className={cx('input-box')}>
+        <input 
+          className={cx('input')} 
+          placeholder=" "
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <label>Tìm kiếm công việc...</label>
+      </div>
     </div>
   );
 }

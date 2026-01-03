@@ -94,14 +94,16 @@ function Home() {
         </div>
 
         <div className="col c-4">
-          <TaskSearch
-            keyword={searchKeyword}
-            onSearch={setSearchKeyword}
-            results={searchResults}
-            onSelectTask={(task) => setSelectedTaskId(task.id)}
-          />
+          <div className={cx('box')} >
+            <TaskSearch
+              keyword={searchKeyword}
+              onSearch={setSearchKeyword}
+              results={searchResults}
+              onSelectTask={(task) => setSelectedTaskId(task.id)}
+            />
 
-          <TaskFilter onChange={setStatusFilter} />
+            <TaskFilter onChange={setStatusFilter} />
+          </div>
         </div>
       </div>
     </div>

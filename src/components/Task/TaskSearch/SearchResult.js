@@ -14,7 +14,7 @@ function SearchResult({ results, onSelectTask }) {
         {results.map((task) => (
           <li className={cx("search-result-item")}>
             <div
-              className={cx(
+              className={(
                 "item-title",
                 task.status === "Done"
                   ? "done"

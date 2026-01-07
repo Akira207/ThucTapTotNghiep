@@ -10,7 +10,7 @@ function TaskItem({ task, onSelectTask, onDelete }) {
   return (
     <li className={cx("task-item")}>
       <div
-        className={cx(
+        className={(
           "item-title",
           task.status === "Done"
             ? "done"

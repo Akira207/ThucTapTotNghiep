@@ -40,19 +40,6 @@
   font-size: 16px;
 }
 
-.done {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-
-.in-progress {
-  color: $warning-color;
-}
-
-.todo {
-  color: $white-color;
-}
-
 .item-actions {
     margin-left: auto;
 

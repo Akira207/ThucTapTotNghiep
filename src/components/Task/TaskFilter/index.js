@@ -24,18 +24,19 @@ function TaskFilter({ onChange }) {
         <label key={status} className={cx("checkbox")}>
           <input type="checkbox" value={status} onChange={handleChange} />
           <span className={cx("checkmark")}></span>
-          <span
-            className={cx(
-              "label",
-              status === "Done"
-                ? "done"
-                : status === "In Progress"
-                ? "in-progress"
-                : "todo"
-            )}
-          >
-            {STATUS_LABELS[status]}
-          </span>
+          <div className={cx('label')} >
+            <span
+              className={
+                status === "Done"
+                  ? "done"
+                  : status === "In Progress"
+                  ? "in-progress"
+                  : "todo"
+              }
+            >
+              {STATUS_LABELS[status]}
+            </span>
+          </div>
         </label>
       ))}
     </div>
